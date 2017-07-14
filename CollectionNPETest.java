@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Java8ˆÈ~AˆÈ‰º‚ÌƒR[ƒh‚ÍNPE‚ğ”­¶‚³‚¹‚éB
+ * Java8ä»¥é™ã€ä»¥ä¸‹ã®ã‚³ãƒ¼ãƒ‰ã¯NPEã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
  */
 public class CollectionNPETest {
 	   public static void main(String[] args) {
 	        try {
-	            Collection<String> col = new ArrayList<String>();
+	            Collection<String> col = new ArrayList<>();
 
 	            col.removeAll(null);
 	            col.retainAll(null);
