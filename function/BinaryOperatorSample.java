@@ -29,7 +29,7 @@ public class BinaryOperatorSample {
 
 	public static void main(String[] args) {
 		BinaryOperatorSample sample = new BinaryOperatorSample();
-		System.out.println("--- doMaxBy -----");
+		System.out.println("--- doMaxBy1 -----");
 		sample.doMaxBy();
 		System.out.println("--- doMinBy -----");
 		sample.doMinBy();
