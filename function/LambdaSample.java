@@ -14,21 +14,33 @@ public class LambdaSample {
 	 */
 	@FunctionalInterface
 	public interface MyFunctionInterface {
-		public String example(int n);
+		String example(int n);
 	}
 
 	// 関数型インターフェースCallableへのlambda式利用
 	private void doCallable() throws InterruptedException, ExecutionException {
 		ExecutorService pool = Executors.newSingleThreadExecutor();
 		try {
+			Future<Integer> future = pool.submit(() -> 123);
+			System.out.println("result:" + future.get());
+		} finally {
+			pool.shutdownNow();
+		}
+	}
+
+	// 関数型インターフェースCallableからの例外
+	private void doCallableException() throws InterruptedException, ExecutionException {
+		ExecutorService pool = Executors.newSingleThreadExecutor();
+		try {
 			Future<Integer> future = pool.submit(() -> {
-				return 123;
+				throw new IllegalStateException("inner callable.");
 			});
 			System.out.println("result:" + future.get());
 		} finally {
 			pool.shutdownNow();
 		}
 	}
+	
 
 	// 関数型インターフェースComparatorへのlambda式利用
 	private void doComparator() {
@@ -62,6 +74,12 @@ public class LambdaSample {
 
 		System.out.println("--- doCallable -----");
 		sample.doCallable();
+		System.out.println("--- doCallableException -----");
+		try {
+			sample.doCallableException();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println("--- doSort -----");
 		sample.doComparator();
 		System.out.println("--- doConsumer -----");
